@@ -1,0 +1,99 @@
+{
+ "train_from_scratch": true,
+ "problem_scale_start": 20,
+ "problem_scale_step": 20,
+ "problem_scale_end": 100,
+ "performance_thres": 1.5,
+ "keep_performance_thres": true,
+ "patience": 5,
+ "iter_num": 100,
+ "psro_loop": 5,
+ "spld_loop": 1,
+ "load_resume": null,
+ "create_dir": true,
+ "save_path": "/mnt/data1/wangchenguang/PSRO-CO",
+ "eval_num": 100,
+ "eval_mode": "gt",
+ "train_solver_only": false,
+ "problem": "CVRP",
+ "method": "POMO",
+ "solver_epochs": 5,
+ "num_batch": 500,
+ "solver_val_size": 1000,
+ "solver_n_encode_layers": 6,
+ "offset_test": 100,
+ "dg_epochs": 100,
+ "dg_lr": 0.0001,
+ "dg_wd": 1e-05,
+ "dg_train_batch": 1280,
+ "dg_eval_batch": 1000,
+ "dg_nf_layer": 5,
+ "log_to_wandb": true,
+ "env_params": {
+  "problem_size": 20,
+  "pomo_size": 20
+ },
+ "model_params": {
+  "embedding_dim": 128,
+  "sqrt_embedding_dim": 11.313708498984761,
+  "encoder_layer_num": 6,
+  "qkv_dim": 16,
+  "head_num": 8,
+  "logit_clipping": 10,
+  "ff_hidden_dim": 512,
+  "eval_type": "argmax"
+ },
+ "optimizer_params": {
+  "optimizer": {
+   "lr": 0.0001,
+   "weight_decay": 1e-06
+  },
+  "scheduler": {
+   "milestones": [
+    8001,
+    8051
+   ],
+   "gamma": 0.1
+  }
+ },
+ "trainer_params": {
+  "use_cuda": true,
+  "cuda_device_num": 0,
+  "epochs": 8100,
+  "train_episodes": 100000,
+  "train_batch_size": 64,
+  "prev_model_path": null,
+  "logging": {
+   "model_save_interval": 500,
+   "img_save_interval": 500,
+   "log_image_params_1": {
+    "json_foldername": "log_image_style",
+    "filename": "style_cvrp_100.json"
+   },
+   "log_image_params_2": {
+    "json_foldername": "log_image_style",
+    "filename": "style_loss_1.json"
+   }
+  },
+  "model_load": {
+   "enable": true,
+   "path": "./NeuralSolver/CVRP/POMO/result/saved_CVRP20_model",
+   "epoch": 2100
+  }
+ },
+ "tester_params": {
+  "use_cuda": true,
+  "cuda_device_num": 0,
+  "model_load": {
+   "path": "./result/saved_CVRP20_model",
+   "epoch": 2100
+  },
+  "test_episodes": 10000,
+  "test_batch_size": 400,
+  "augmentation_enable": true,
+  "aug_factor": 8,
+  "aug_batch_size": 400
+ },
+ "solver_batch_size": 64,
+ "solver_epoch_size": 100000
+}
