@@ -28,10 +28,7 @@ def initialize(opts, baseline_mode=False):
 
     # Main Components
     model = Model(baseline_mode, **model_params)
-    # param = torch.load('/mnt/data1/wangchenguang/PSRO-CO/save_game_asp/TSP/POMO/zany-universe-197/asp_info_38.pt')['solver_param']['model']
-    # model.load_state_dict(param)
     env = Env(**env_params)
-    # optimizer = Optimizer(model.adapter_after_embedder.parameters(), **optimizer_params['optimizer'])
     optimizer = Optimizer(model.parameters(), **optimizer_params['optimizer'])
     scheduler = Scheduler(optimizer, **optimizer_params['scheduler'])
 

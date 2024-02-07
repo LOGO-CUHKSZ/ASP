@@ -51,7 +51,7 @@ if __name__=="__main__":
 
 
     # eval the game
-    parser.add_argument('--eval_num', type=int, default=1)
+    parser.add_argument('--eval_num', type=int, default=100)
     parser.add_argument('--eval_mode', type=str, default='gt', help='gt: using oracle solver; mix: using mix-solver')
 
     # set solver
@@ -60,7 +60,7 @@ if __name__=="__main__":
                         help='TSP, CVRP, SDVRP, OP, PCTSP_DET, PCTSP_STOCH')
     parser.add_argument('--method', type=str, default='POMO')
     parser.add_argument('--solver_epochs', type=int, default=5,
-                        help='The number of epochs to train')
+                        help='The number of epochs to train solvers')
     parser.add_argument('--num_batch', type=int, default=1,
                         help='The number of batches to fintune')
     parser.add_argument('--solver_val_size', type=int, default=10000,
@@ -88,26 +88,8 @@ if __name__=="__main__":
 
     config = combine_Solver_configs(parser)
 
-    # config.problem_scale_list = [20,40,60,80,100]
-    # config.training_status = 'AS'
-    # config.not_use_task_selection = True
-    # config.train_solver_only = True
-
     seed = np.random.randint(0,10000)
     set_random_seed(seed)
-
-    # config.task_description = 'test'
-    # config.train_from_scratch = True
-    # config.create_dir = True
-    # config.performance_thres = float(config.performance_thres)
-    # config.problem_scale_start = float(config.problem_scale_start)
-    # config.problem_scale_end = float(config.problem_scale_end)
-
-    # config.task_description = 'fig3.1-pomo-tsp-nostd-1'
-
-    # config.training_status = 'AS'
-    # config.train_solver_only = True
-    # config.train_from_scratch=True
-    # config.not_use_task_selection=True
+    
     asp = ASP(config)
     asp.train_asp()

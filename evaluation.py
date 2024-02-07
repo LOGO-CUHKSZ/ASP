@@ -7,8 +7,8 @@ import tsplib95
 import time
 import os
 
-# todo: For providing a complete fair comparison environment, we recommend to do evaluation in the corresponding source
-#  codes by loading the prams obtained from ASP
+# For providing a complete fair comparison environment, we recommend to do evaluation in the corresponding source
+# codes by loading the prams obtained from ASP
 
 
 def read_tsplib(filename):
@@ -61,7 +61,7 @@ def read_tsplib(filename):
 def read_generated_data(problem, offset=None):
     datadir = os.path.abspath(os.path.join("datasets", problem, 'generated'))
     file_list = os.listdir(datadir)
-    problem_scale = [int(file.split('-')[1]) for file in file_list]
+    problem_scale = [int(file.split('-')[1]) for file in file_list if file[0]!='.']
     datasets = [load_dataset(os.path.join(datadir,file)) for file in file_list]
     data_list = []
     gt_list = []
@@ -260,21 +260,15 @@ def eval(config):
     duration = {}
     if config.baseline_mode:
         opts = get_options()
-        # if config.problem == 'CVRP':
-        #     opts.problem = 'CVRP'
-        # if config.problem == 'SDVRP':
-        #     opts.problem = 'SDVRP'
         opts.problem = config.problem
         opts.problem_scale= problem_scale
         problem, solver, _, _, _ = initialize(opts,True)
-        # pred = eval(problem, solver, dataset, opts).cpu().numpy()
         pred, duration = eval_time_record(eval, dataset, problem, solver, opts)
     else:
         model_args.device = device
         model_args.problem_scale = problem_scale
         problem = initialize(model_args)[0]
         solver = get_mix_solver(model_args, mix_prob, param_list)
-        # pred = eval(problem, solver, dataset, model_args).cpu().numpy()
         pred, duration = eval_time_record(eval, dataset, problem, solver, model_args)
 
     if config.problem == 'OP':
@@ -323,44 +317,19 @@ if __name__=="__main__":
 
 
     config = parser.parse_args()
-    path = '/mnt/data1/wangchenguang/PSRO-CO'
+    path = './'
 
     if config.problem == 'CVRP':
         if config.method=='POMO':
-            # config.pretrained_gameinfo = path + '/save_game/CVRP/POMO/bright-lion-52'
-            config.pretrained_gameinfo = path + '/save_game/CVRP/POMO/clear-music-118'
+            config.pretrained_gameinfo = path + '/save_asp/CVRP/POMO/smart-sweep-1'
         elif config.method=='AM':
-            config.pretrained_gameinfo = path + '/save_game/CVRP/AM/eager-water-121'
+            config.pretrained_gameinfo = path + '/save_asp/CVRP/AM/dulcet-sweep-1'
 
     elif config.problem == 'TSP':
         if config.method=='POMO':
-            # config.pretrained_gameinfo = './save_game/TSP/POMO/giddy-snow-50'
-            config.pretrained_gameinfo = path + '/save_game/TSP/POMO/light-deluge-117'
+            config.pretrained_gameinfo = path + '/save_asp/TSP/POMO/hopeful-sweep-2'
         elif config.method=='AM':
-            config.pretrained_gameinfo = path + '/save_game/TSP/AM/visionary-elevator-98'
-
-
-    elif config.problem == 'SDVRP':
-        if config.method=='AM':
-            config.pretrained_gameinfo = path + '/save_game/SDVRP/AM/silvery-energy-86'
-            # config.pretrained_gameinfo = path + '/save_game/SDVRP/AM/unique-star-120'
-    elif config.problem == 'OP':
-        if config.method=='AM':
-            config.pretrained_gameinfo = path + '/save_game/OP/AM/comic-blaze-57'
-            # config.pretrained_gameinfo = path + '/save_game/OP/AM/stellar-jazz-108'
-
-    elif config.problem == 'PCTSP_DET':
-        if config.method=='AM':
-            # config.pretrained_gameinfo = path + '/save_game/PCTSP_DET/AM/winter-glitter-74'
-            config.pretrained_gameinfo = path + '/save_game/PCTSP_DET/AM/stilted-lake-106'
-
-    elif config.problem == 'PCTSP_STOCH':
-        if config.method=='AM':
-            config.pretrained_gameinfo = path + '/save_game/PCTSP_STOCH/AM/hardy-wood-75'
-            # config.pretrained_gameinfo = path + '/save_game/PCTSP_STOCH/AM/eager-haze-105'
-
-    elif config.problem == 'JSSP':
-        config.pretrained_gameinfo = path + '/save_game/JSSP/L2D/toasty-rain-92'
+            config.pretrained_gameinfo = path + '/save_asp/TSP/AM/quiet-sweep-1'
 
     print("baseline_mode:", config.baseline_mode)
     print("game_info:", config.pretrained_gameinfo)

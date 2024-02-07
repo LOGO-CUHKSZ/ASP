@@ -1,15 +1,15 @@
-# A Game-Theoretic Approach for Improving Generalization Ability of Neural Solvers in Combinatorial Optimization Problems
+# ASP: Learn a Universal Neural Solver!
 
-This repo implements paper [Wang C, Yu Z, McAleer S, et al. ASP: Learn a Universal Neural Solver![J]. arXiv preprint arXiv:2303.00466, 2023.](https://arxiv.org/abs/2303.00466) which improves the generalization ability of neural solvers on unseen distributions and a range of problem scales.
+This repo implements paper [Wang C, Yu Z, McAleer S, et al. ASP: Learn a Universal Neural Solver![J]. IEEE Transactions on Pattern Analysis and Machine Intelligence, 2024.](https://ieeexplore.ieee.org/abstract/document/10387785) which improves the generalization ability of neural solvers on unseen distributions and a range of problem scales.
 
 ```commandline
-@article{wang2023asp,
+@article{wang2024asp,
   title={ASP: Learn a Universal Neural Solver!},
   author={Wang, Chenguang and Yu, Zhouliang and McAleer, Stephen and Yu, Tianshu and Yang, Yaodong},
-  journal={arXiv preprint arXiv:2303.00466},
-  year={2023}
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2024},
+  publisher={IEEE}
 }
-
 ```
 
 ![pipeline](./Fig/pipeline.jpg)

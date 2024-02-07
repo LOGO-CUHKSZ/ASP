@@ -200,7 +200,7 @@ def calc_vrp_cost(depot, loc, tour):
     return np.linalg.norm(sorted_locs[1:] - sorted_locs[:-1], axis=-1).sum()
 
 
-def get_lkh_executable(url="http://www.akira.ruc.dk/~keld/research/LKH-3/LKH-3.0.8.tgz"):
+def get_lkh_executable(url="http://www.akira.ruc.dk/~keld/research/LKH-3/LKH-3.0.9.tgz"):
 
     cwd = os.path.abspath(os.path.join("OracleSolver", "lkh"))
     os.makedirs(cwd, exist_ok=True)
@@ -208,16 +208,16 @@ def get_lkh_executable(url="http://www.akira.ruc.dk/~keld/research/LKH-3/LKH-3.0
     file = os.path.join(cwd, os.path.split(urlparse(url).path)[-1])
     filedir = os.path.splitext(file)[0]
 
-    if not os.path.isdir(filedir):
-        print("{} not found, downloading and compiling".format(filedir))
+    # if not os.path.isdir(filedir):
+    #     print("{} not found, downloading and compiling".format(filedir))
 
-        check_call(["wget", url], cwd=cwd)
-        assert os.path.isfile(file), "Download failed, {} does not exist".format(file)
-        check_call(["tar", "xvfz", file], cwd=cwd)
+    #     check_call(["wget", url], cwd=cwd)
+    #     assert os.path.isfile(file), "Download failed, {} does not exist".format(file)
+    #     check_call(["tar", "xvfz", file], cwd=cwd)
 
-        assert os.path.isdir(filedir), "Extracting failed, dir {} does not exist".format(filedir)
-        check_call("make", cwd=filedir)
-        os.remove(file)
+    #     assert os.path.isdir(filedir), "Extracting failed, dir {} does not exist".format(filedir)
+    #     check_call("make", cwd=filedir)
+    #     os.remove(file)
 
     executable = os.path.join(filedir, "LKH")
     assert os.path.isfile(executable)

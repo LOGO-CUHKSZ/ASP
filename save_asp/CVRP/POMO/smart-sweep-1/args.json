@@ -11,7 +11,7 @@
  "spld_loop": 1,
  "load_resume": null,
  "create_dir": true,
- "save_path": "/mnt/data1/wangchenguang/PSRO-CO",
+ "save_path": "./",
  "eval_num": 100,
  "eval_mode": "gt",
  "train_solver_only": false,
