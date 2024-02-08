@@ -42,7 +42,16 @@ set these solvers in advance.
 For or-tools, you can set it easily by pip.
 
 For LKH, it will be configured once you run the code. If it's not installed successfully, you need to set [LKH](http://webhotel4.ruc.dk/~keld/research/LKH-3/)
- by yourself in the `./OracleSolver` folder.
+by yourself in the `./OracleSolver` folder.
+
+For setting LKH, you need go to `./OracleSolver/lkh` and find `LKH-3.0.9.tgz`, then run the following commands in terminal:
+```
+tar xvfz LKH-3.0.9.tgz
+cd LKH-3.0.9
+make
+```
+
+
 
 # How To Run
 ## Training
@@ -55,7 +64,7 @@ If you want to resume the training , you can use:
 ```
 to specify the dir of your asp_info.pt. We provide our game info in dir './save_asp' and you can run in the following way:
 ```python
-CUDA_VISIBLE_DEVICES=0 python run.py --create_dir --task_description train-tsp-pomo --problem TSP --method POMO  --performance_thres .5 --load_resume ./load_resume/TSP/POMO/tsp-pomo/asp_info.pt
+CUDA_VISIBLE_DEVICES=0 python run.py --create_dir --task_description train-tsp-pomo --problem TSP --method POMO  --performance_thres .5 --load_resume ./save_asp/TSP/POMO/tsp_pomo/all_best_asp_info.pt
 ```
 
 ## Evaluation

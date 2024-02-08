@@ -321,15 +321,15 @@ if __name__=="__main__":
 
     if config.problem == 'CVRP':
         if config.method=='POMO':
-            config.pretrained_gameinfo = path + '/save_asp/CVRP/POMO/smart-sweep-1'
+            config.pretrained_gameinfo = path + '/save_asp/CVRP/POMO/cvrp_pomo'
         elif config.method=='AM':
-            config.pretrained_gameinfo = path + '/save_asp/CVRP/AM/dulcet-sweep-1'
+            config.pretrained_gameinfo = path + '/save_asp/CVRP/AM/cvrp_am'
 
     elif config.problem == 'TSP':
         if config.method=='POMO':
-            config.pretrained_gameinfo = path + '/save_asp/TSP/POMO/hopeful-sweep-2'
+            config.pretrained_gameinfo = path + '/save_asp/TSP/POMO/tsp_pomo'
         elif config.method=='AM':
-            config.pretrained_gameinfo = path + '/save_asp/TSP/AM/quiet-sweep-1'
+            config.pretrained_gameinfo = path + '/save_asp/TSP/AM/tsp_am'
 
     print("baseline_mode:", config.baseline_mode)
     print("game_info:", config.pretrained_gameinfo)

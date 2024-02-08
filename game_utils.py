@@ -10,7 +10,6 @@ from OracleSolver.oracles import parall_solve
 import wandb
 import os, json
 import time
-from collections import deque
 from torch.distributions.uniform import Uniform
 
 
@@ -593,7 +592,7 @@ class ASP:
         if self.status == 'psro':
             print('Train initial PSRO')
             self.psro.init(problem_scale=self.ps_list[-1], solver_agent=self.resume_solver_agent)
-            self.his_performance[self.ps_list[-1]] = []  # deque([],maxlen=10)
+            self.his_performance[self.ps_list[-1]] = []
             solver_agent, mix_dist, eval_res, all_eval_res = self.psro.train_psro(self.his_performance, self.logger,
                                                                                   self.all_eval_steps,
                                                                                   self.psro_eval_steps)
@@ -637,7 +636,7 @@ class ASP:
 
                 if ps_temp <= self.config.problem_scale_end:
                     self.ps_list.append(ps_temp)
-                    self.his_performance[self.ps_list[-1]] = []  # deque([],maxlen=10)
+                    self.his_performance[self.ps_list[-1]] = []
                 else:
                     break
                 self.psro.init(problem_scale=self.ps_list[-1], solver_agent=solver_agent)
@@ -715,7 +714,6 @@ class ASP:
                     }
                     , self.path + '/best_asp_info.pt'
                 )
-                # wandb.save(self.path + '/best_asp_info-resume.pt', base_path=self.path)
             elif all:
                 torch.save(
                     {
